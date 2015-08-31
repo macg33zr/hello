@@ -22,7 +22,7 @@ public class Sender  {
         this.queue = queue
     }
 
-    @Scheduled(fixedRate = 10000L)
+    @Scheduled(fixedRate = 60000L)
     public void generate() {
 
         Hello item = new Hello()
