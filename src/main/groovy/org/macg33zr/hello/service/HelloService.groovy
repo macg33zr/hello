@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service
 class HelloService {
 
     Hello doHello() {
-        return new Hello([message:"Service says hello from REST endpoint", dateStr:new Date().getDateTimeString()])
+        return new Hello(message:"Service says hello from REST endpoint", dateStr:new Date().getDateTimeString())
     }
 }
 
