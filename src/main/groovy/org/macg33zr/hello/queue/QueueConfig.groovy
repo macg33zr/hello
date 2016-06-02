@@ -1,5 +1,6 @@
 package org.macg33zr.hello.queue
 
+import org.apache.activemq.ActiveMQConnectionFactory
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.jms.core.JmsTemplate
@@ -23,7 +24,12 @@ class QueueConfig {
     }
 
     @Bean
-    SimpleMessageListenerContainer container(MessageListenerAdapter adapter, ConnectionFactory factory) {
+    SimpleMessageListenerContainer container(MessageListenerAdapter adapter, ActiveMQConnectionFactory factory) {
+
+        // Trust all packaged for serialisation
+        // Future: see https://github.com/spring-projects/spring-boot/issues/5631
+        factory.setTrustAllPackages(true)
+
         SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
         container.setMessageListener(adapter);
         container.setConnectionFactory(factory);
