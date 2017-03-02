@@ -1,9 +1,9 @@
 pipeline {
   agent any 
   
-    tools {
+    //tools {
         //gradle "gradle-latest"
-    }
+    //}
 
     options {
         buildDiscarder(logRotator(numToKeepStr: '10'))
