@@ -2,7 +2,7 @@ pipeline {
   agent any 
   
     tools {
-        gradle "gradle-latest"
+        //gradle "gradle-latest"
     }
 
     options {
@@ -24,10 +24,19 @@ pipeline {
     }
        
     stage('build') {
+            
       steps {
-        sh 'set'
-        sh 'gradle --version'
-        sh 'gradle clean build test -i'
+        withEnv(["GRADLE_HOME=${tool name: 'GRADLE_LATEST', type: 'hudson.plugins.gradle.GradleInstallation'}"]) {
+          withEnv(["PATH=${env.PATH}:${env.GRADLE_HOME}/bin"]) {
+
+              // Checking the env
+              echo "GRADLE_HOME=${env.GRADLE_HOME}"
+              echo "PATH=${env.PATH}"               
+              sh 'set'
+              sh 'gradle --version'
+              sh 'gradle clean build test -i'
+          }
+        }
       }
     }
   }
