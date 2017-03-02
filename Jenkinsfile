@@ -25,6 +25,7 @@ pipeline {
        
     stage('build') {
       steps {
+        sh 'set'
         sh 'gradle --version'
         sh 'gradle clean build test -i'
       }
