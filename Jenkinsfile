@@ -27,7 +27,7 @@ pipeline {
     stage('build') {
             
       steps {
-        withEnv(["GRADLE_HOME=${tool name: 'gradle_2', type: 'hudson.plugins.gradle.GradleInstallation'}"]) {
+        withEnv(["GRADLE_HOME=${tool name: 'GRADLE_2', type: 'hudson.plugins.gradle.GradleInstallation'}"]) {
           withEnv(["PATH=${env.PATH}:${env.GRADLE_HOME}/bin"]) {
 
               // Checking the env
